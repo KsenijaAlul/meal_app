@@ -4,6 +4,7 @@ import '../models/category.dart';
 import '../widgets/category_card.dart';
 import 'meals_screen.dart';
 import '../models/meal.dart';
+import 'favorites_screen.dart';
 import 'meal_detail_screen.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -53,14 +54,27 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Categories'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.casino),
-            onPressed: showRandomMeal,
+  title: const Text('Categories'),
+  actions: [
+    IconButton(
+      icon: const Icon(Icons.casino),
+      tooltip: 'Random recipe',
+      onPressed: showRandomMeal,
+    ),
+    IconButton(
+      icon: const Icon(Icons.favorite),
+      tooltip: 'Favorites',
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => const FavoritesScreen(),
           ),
-        ],
-      ),
+        );
+      },
+    ),
+  ],
+),
       body: loading
           ? Center(child: CircularProgressIndicator())
           : Column(
